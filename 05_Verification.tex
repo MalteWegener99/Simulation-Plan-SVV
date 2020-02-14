@@ -1,0 +1,45 @@
+\section{Verification}
+\label{sec:verification}
+%In this chapter, we need to write about the types of unit testing (a little something for each of them) and maybe come up with some more
+\textit{To ensure a working simulation, it is paramount to verify the model. This chapter will discuss how the team plans to perform the verification of the numerical model that will be implemented in the following weeks, through unit, integration and system testing.}
+
+\subsection{Step by step model verification through unit testing}
+A systematical approach to the verification is important to prevent issues as the program grows. To make sure nothing is overlooked, the model and its code will be verified in steps, through unit testing. In order to ensure a test coverage that approaches 100\% for the final program, the team aims to design and implement unit tests for each of the main functions, as presented in the flowchart in section TBD. This will preferably be done right after a certain function has been implemented, in order to maximise efficiency and minimise the chance of finding out about a bug in the code late into the process and not being able to locate it. Automated unit tests will be implemented using Pytest, for the case where reasonable assertions can be expressed- when hand calculations can be performed. For the other case, manual unit testing will be performed and documented. An overview of the proposed unit tests will be presented next. 
+
+\subsubsection{Structural idealisation}
+\subsubsection{Centroid}
+\subsubsection{Moment of Inertia}
+\subsubsection{Shear Center}
+\subsubsection{Interpolation tool}
+\subsubsection{Integration tool}
+
+
+\subsection{Integration testing}
+After each of the main functions have been tested using unit tests, it is time to verify to what extent do these units work together within the code, as some possible bugs may not be identified at the unit level itself.
+
+\subsubsection{Equilibrium of forces}
+
+\subsection{System Testing}
+System testing represents the verification procedure of the program as a whole. This may be performed after the unit and integration testing. Due to the fact that the final program will be complex, system testing will be manually performed, as opposed to being automated. The system tests that are planned to be performed will be presented next.
+
+\subsubsection{Using different input variables}
+\subsubsection{Mesh independence}
+\subsubsection{Maximum stress}
+\subsubsection{Comparison with the given verification model}
+The final system test that will be performed will consist of comparing the outputs of the designed numerical model with those delivered by the verification model. This will be done by changing the input variables in the verification model to those corresponding to the Fokker 100. Due to the fact that many different assumptions have been made both in the team's numerical model and in the given verification model, as different methods have been used, a perfect match of the output data of the two programs is not required. However, a very close result with minor to no differences should be observed with regards to the result of the verification model, in order to be able to state that the numerical model is indeed correct. 
+
+
+
+
+\subsubsection{Verification of code} The verification of the code can be performed during and after the coding itself. By paying attention to syntax errors and general coding errors in the modules, they can be filtered out before the size of the program gets overwhelmingly big. The compiler will announce most of the errors and stop the program making it easy to observe coding errors. However, detecting errors like wrong indices, incomplete lists or inattentive mistakes are less easy to find. Therefore, keeping an eye on these whilst working on the models, will make the whole process a lot easier. A check for this is recalculating by hand, given the same input. If the output is the same, the module or program works the way it is supposed to. To ensure redundancy, multiple inputs will be used.
+\subsubsection{Verification of calculations}
+As modules, they will be checked for mistakes in calculations. These tests will show whether the modules function correctly so that they can be eliminated as source of the problem when combined with the other parts of the problem. Because these modules have a limited number of functionalities, they can easily be verified by a combination of pytest and computing the results by hand, or using unit tests. Working this way, python can compare the output of the module with result that was calculated by hand and directly stop the program if it is incorrect.\\ \\
+The next step is testing for errors in the merger of modules. This is not as straight-forward as the checking of modules since there are numerous ways for the program to run through the modules. The main way of testing is by checking inputs and outputs along the way. If the output of a certain module fits with the input of the next, the link works the way it is supposed to. After this test, longer links of modules can be tested with given inputs and recalculations by hand. 
+Specific unit tests are the following:\\
+\begin{itemize}
+    \item The unit test to check for the correct centroid will be conducted as follows. The centroids of the separate components will be calculated by hand and by the numerical model. These will be compared. If they are correct, the model will be asked to compute the centroid of the whole structure. The easiest test to see whether this is correct is to verify that the centroid is on the line of symmetry. If it is, it needs to be compared to the centroid computed by hand to ensure the right centroid location. 
+    \item The module that computes the boom locations and areas can be checked in a similar fashion. By checking the centroid module and ensuring the correct input, again the result of the model can be compared with the outcome of calculations on paper. 
+\end{itemize}
+
+\subsection{Comparison}
+After making sure the program works as required, the results can be compared to the results of the verification model, assuming the model does not contain faults. By again checking results during the program, discrepancies can be identified. Logically, if the first output is relatively close to the expected output from the verification model, and the second output is not, something is wrong in the numerical model. This way the verification model can be used as a very close approximation of what the numerical model should be. 

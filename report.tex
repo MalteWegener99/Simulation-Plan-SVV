@@ -1,0 +1,166 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% University Assignment Title Page 
+% LaTeX Template
+% Version 1.0 (27/12/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% WikiBooks (http://en.wikibooks.org/wiki/LaTeX/Title_Creation)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+% 
+% Instructions for using this template:
+% This title page is capable of being compiled as is. This is not useful for 
+% including it in another document. To do this, you have two options: 
+%
+% 1) Copy/paste everything between \begin{document} and \end{document} 
+% starting at \begin{titlepage} and paste this into another LaTeX file where you 
+% want your title page.
+% OR
+% 2) Remove everything outside the \begin{titlepage} and \end{titlepage} and 
+% move this file to the same directory as the LaTeX file you wish to add it to. 
+% Then add \input{./title_page_1.tex} to your LaTeX file where you want your
+% title page.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+% Please add the following required packages to your document preamble:
+\usepackage{multirow}
+\usepackage[normalem]{ulem}
+\useunder{\uline}{\ul}{}
+\usepackage{textcomp}
+\usepackage{afterpage}
+\usepackage{cite}
+\usepackage{rotating}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage[toc,page]{appendix}
+\usepackage{multicol}
+\usepackage[utf8]{inputenc}
+\usepackage[]{graphicx}
+\usepackage[export]{adjustbox}
+\usepackage{multicol}
+\usepackage{subcaption}
+\usepackage{caption}
+\usepackage[font=small,labelfont=bf]{caption}
+\usepackage{enumitem}
+\setlist{nolistsep}                         % no white line between list items
+\newlist{steps}{enumerate}{1}               % step 1, step 2, etc. \begin
+\setlist[steps, 1]{label = Step \arabic*:}  % \end
+\usepackage{listings}
+\usepackage{url}
+\usepackage{tabto}
+\usepackage{hyperref}
+\usepackage{eurosym}
+\usepackage[top=2.2cm,bottom=2.2cm,left=2.2cm,right=2.2cm]{geometry}
+\setlength{\parindent}{2em}                 % use \par end of paragraph, indent will follow
+\usepackage[table,xcdraw]{xcolor}           % color cells in table
+\usepackage{siunitx}                        % SI units
+\usepackage{adjustbox}                      %rotate boxes in an angle X: \begin{adjustbox}{angle=X}
+
+\usepackage{color} %red, green, blue, yellow, cyan, magenta, black, white
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+
+\usepackage{datetime}
+\newdateformat{monthyeardate}{%
+  \monthname[\THEMONTH], \THEYEAR}
+\usepackage{dingbat}
+\usepackage{caption}                        %\captionsetup[table]{skip=5pt}
+\usepackage{gensymb}
+\usepackage{pdfpages}                       % add pdf pages to document
+\setlength{\columnsep}{2cm}
+\usepackage[normalem]{ulem}
+\newcommand{\Tau}{\mathrm{T}}               % add \Tau as option to document
+\usepackage{minted}                         % nice python scripts, \begin{minted}[linenos,breaklines]{python}
+\usepackage{array}
+\usepackage{verbatim}                       % \begin{comment}  [....] \end{comment}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{tikz}
+\newcommand{\fatterdot}{\raisebox{0.25ex}{\tikz\filldraw[black,x=2pt,y=2pt] (0,0) circle (1);}}
+\usepackage{blindtext}
+%\usepackage{cleveref}
+\usepackage{pgfgantt}
+\usepackage{xcolor}
+\usepackage[utf8]{inputenc}
+
+\newcommand*{\eqautoref}[1]{%
+  \begingroup
+    \def\equationautorefname{eq.}%
+    \autoref{#1}%
+  \endgroup
+}
+
+\newcommand*{\figautoref}[1]{%
+  \begingroup
+    \def\equationautorefname{fig.}%
+    \autoref{#1}%
+  \endgroup
+}
+
+\definecolor{barblue}{RGB}{33,87,50}
+\definecolor{groupblue}{RGB}{0,87,50}
+\definecolor{linkred}{RGB}{33,0,50}
+\begin{document}
+
+%Cover page
+
+
+
+%Title
+\input{title}
+
+% Table of contents
+\tableofcontents
+\newpage
+
+% Content
+
+\pagenumbering{roman}
+\newpage
+\pagenumbering{arabic}
+\newpage
+\input{01_Introduction.tex}
+\newpage
+\input{02_Loading.tex}
+\newpage
+\input{03_Numerical_model.tex}
+\newpage
+\input{04_Verification_model.tex}
+\newpage
+\input{05_Verification.tex}
+\newpage
+\input{06_Validation.tex}
+\newpage
+%\input{Chapter5.tex}
+%\newpage
+%\input{Chapter6.tex}
+%\newpage
+%\input{07_Conclusion.tex}
+%\newpage
+\appendix
+\addcontentsline{toc}{section}{Appendices}
+\section*{Appendices}
+\input{Appendix.tex}
+%\input{tradeoff}
+
+%Bibliography
+\newpage
+\addcontentsline{toc}{section}{References}
+\bibliography{report}
+\bibliographystyle{ieeetr}
+
+
+\end{document}

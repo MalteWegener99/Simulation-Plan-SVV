@@ -1,0 +1,65 @@
+\section{Task allocation}
+\begin{center}
+    
+
+\begin{table}[H]
+\centering
+\begin{tabular}{l|c|c|c|c|c|c|c|}
+
+\cline{2-8}
+\textbf{}                                  & \multicolumn{1}{l|}{\textbf{Student}} & \multicolumn{1}{l|}{Bram} & \multicolumn{1}{l|}{Menno} & \multicolumn{1}{l|}{Wieger} & \multicolumn{1}{l|}{Yara} & \multicolumn{1}{l|}{Florina} & \multicolumn{1}{l|}{Malte} \\ \hline
+\multicolumn{1}{|c|}{\textbf{Task}}        & \textbf{Time (h)}                     &                           &                            &                             &                           &                              &                            \\ \hline
+\multicolumn{1}{|l|}{Loading cases}        & 5                                     &                           &                            & 4                           &                           &                              & 4                          \\ \hline
+\multicolumn{1}{|l|}{Numerical model}      & 10                                    & 4                         &                            & 4                           &                           &                              & 4                          \\ \hline
+\multicolumn{1}{|l|}{Verification model}   & 15                                    &                           & 4                          &                             & 4                         & 7                            &                            \\ \hline
+\multicolumn{1}{|l|}{Verification}         & 8                                     &                           &                            &                             & 4                         & 2                            &                            \\ \hline
+\multicolumn{1}{|l|}{Validation}           & 9                                     &                           & 4                          &                             &                           & 2                            &                            \\ \hline
+\multicolumn{1}{|l|}{General reporting}    & 4                                     &                           &                            &                             & 2                         & 2                            &                            \\ \hline
+\multicolumn{1}{|c|}{\textbf{Total hours}} &                                       & x                         & x                          & x                           & x                         & x                            & x                          \\ \hline
+\end{tabular}
+\caption{The task division and hours of working for the simulation plan.}
+\end{table}
+\end{center}
+\vspace{-10mm}
+\section{Gantt chart}
+A Gantt chart has been constructed in order to help visualize the distribution of the workload for the entirety of the project. This will aid in keeping the team on track.
+\begin{center}
+\begin{ganttchart}[vgrid={draw=none,draw=none},%
+            %today=15,%
+            %today offset=.5,%
+            %today label=Heute,%
+            %progress=today,%
+            y unit title=0.7cm,
+            y unit chart=0.6cm,
+            bar incomplete/.append style={fill=red},%
+            progress label text=  {\quad\pgfmathprintnumber[precision=0,verbatim]{#1}\%}%
+            ]{1}{20}
+\gantttitlecalendar*[time slot format=isodate]{2020-02-10}{2020-02-28}{year, month} \\
+\gantttitlelist{10,...,28}{1}\\
+\ganttgroup{Total Duration}{1}{19} \\
+ %%%%%%%%%%%%%%%%%Phase-1
+\ganttgroup{Preparation}{1}{3} \\
+\ganttbar{Reading}{1}{3} \\
+\ganttlinkedbar{Introduction lecture}{2}{2}  \ganttnewline
+%%%%%%%%%%%%%%%%%Phase-2
+\ganttgroup{Simulation plan}{3}{5} \\
+\ganttlinkedbar{Loading}{3}{4} \\
+\ganttlinkedbar{Numerical model}{3}{4} \ganttnewline
+\ganttlinkedbar{Verification model}{3}{4} \ganttnewline
+\ganttlinkedbar{Verification}{3}{5} \ganttnewline
+\ganttlinkedbar{Validation}{4}{5} \ganttnewline
+\ganttlinkedbar{General reporting}{3}{5} \ganttnewline
+ %%%%%%%%%%%%%%%%%Phase-3
+\ganttgroup{Report}{6}{19} \\
+\ganttbar{Evaluate and alter Simulation plan}{6}{8} \\
+\ganttlinkedbar{Coding modules centroid and MoI}{6}{9} \ganttnewline
+\ganttlinkedbar{Coding modules load cases}{7}{10} \ganttnewline
+\ganttlinkedbar{Verification}{8}{16} \ganttnewline
+\ganttlinkedbar{Validation}{15}{19}\ganttnewline
+\ganttlinkedbar{General reporting}{6}{19}\ganttnewline
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{ganttchart}
+
+    
+\end{center}

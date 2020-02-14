@@ -1,0 +1,100 @@
+\section{Numerical Model}
+\label{sec:numerical_model}
+\textit{This chapter will discuss the assumptions made in the development of the numerical model as well as the approach taken to calculate the internal stresses of the aileron.\\
+Firstly the method is explained. Secondly the assumptions and idealisations are listed along with their arguments and significance. Furthermore, the load case and the governing equations of the numerical model are explained.}
+
+\subsection{Assumptions and Idealisations}
+\label{subsec:assumptions_numerical}
+The structure is idealized as a boom skin multi-cell beam structure. This assumption is reasonable, as the thickness of the skin is magnitudes smaller than the size of the structure, as well as the moment of inertia of a stringer is magnitudes smaller than its contribution to the bending stiffness by the parallel Axis Theorem. With this idealization it is assumed that only the stiffeners carry normal stresses, while the skin only carries shear. Furthermore it is assumed that the material is behaving linearly in all load cases, this is a reasonable assumption if the maximum stress in the aileron stays below the yield stress of the material used.\par
+
+As the structure is assumed to be thin walled with stringers in the direction of the x axis, compressive and tensile forces are only taken into account for this direction, as there are however no external Forces acting in the x axis, the structure is assumed to be only in shear, bending, and torsion. These 3 can occur around all axes. However, bending around the y axis is neglected, as all 3 hinges are fixed in this direction and the moment of inertia for this bending is bigger than for the other directions while the forces causing it are smaller. Bending around the x axis is also neglected as the cord of the aileron is  Torsion is only considered around the x axis of the aileron as this direction has the smallest cross-section of the 3 possible cutting planes. Furthermore shear in the x direction is not calculated, as it can be seen by inspection that no external forces are acting in the x axis.
+
+\subsection{Load case decomposition}
+\label{subsec:load_decomposition}
+Three load cases are present. Firstly there is the deformation of the aileron, due to the wing-flex of the main wing. This deformation is described as bending around the z-axis. Naturally this causes a bending moment around the z-axis. Furthermore it also introduces in hinge 1 and 3 reaction forces in the y-direction.
+\par
+The second load case consists of the aerodynamic load acting on the aileron. The distributed load, varying in x- and z- direction acts in negative y-direction. It introduces a bending moment around the x- and z- axis. Furthermore it causes torsion around the x-axis, due to its uneven distribution. Finally there is also shear stress in the y-direction due to this load.
+\par
+The final load case that is being considered is the load acting on actuator II. This load causes bending around the z-axis and torsion around the x-axis. Furthermore, shear stress is introduced in the z- and y-axis.
+\par
+From these first two load cases (wing-flex and aerodynamic load) the third load case along with the reaction forces in the three hinges can be calculated. This is done by stating the force and moment equilibrium.
+
+When all the of loads acting on the aileron are known, torsion, normal (bending) stress and shear stress are calculated for each load case if they apply. Finally, using the principle of superposition, torsion, normal stress and shear stress are calculated as a result of all the load cases and unified into a single loadcase.
+
+\
+%We can't have subsubsubsections..
+\subsubsection{Governing Equations}
+\label{subsubsec:gov_eq_numerical}
+
+In order to determine the torsion in the aileron, a thin-walled multi cell beam structure is assumed, as stated in \autoref{subsec:assumptions_numerical}. Using this assumption, the following equations can be applied. The first equation deals with the torsion experienced by each cell in the structure. Ultimately these can be summed to come to the overall torsion in the structure. This equations holds $n$ unknown shear values for $n$ cells.
+\begin{equation}
+    T=\sum_{k=1}^{N}=2 A_{r} q
+\end{equation}
+The second equation deals with the rate of twist experienced by the entire structure, which thus is the same for every cell. For the same $n$ cells this results in the same $n$ unknown shear values for $n$ cells.
+\begin{equation}
+    \frac{d \theta}{d z}=\frac{1}{2 A_{r}} \oint \frac{q d s}{G t}
+\end{equation}
+Consequently, this system of equations is used to calculate the resulting shear flow in the entire aileron structure from the applied torques.\par
+In order to analyse the bending of the aileron, it is assumed to behave as an ideal engineering beam ,which deflection can be described by \eqautoref{eq:Beamformula} .
+
+\begin{equation}
+    \frac{d^2}{d x^2}w(x) = \frac{M_x}{E I_{zz}}
+    \label{eq:Beamformula}
+\end{equation}
+
+And the normal stress in the beam can be calculated by \eqautoref{eq:stress_bending} .
+
+\begin{equation}
+    \sigma_x = \frac{M_x y}{I_{zz}}
+    \label{eq:stress_bending}
+\end{equation}
+
+Furthermore, the shear in the crossection of the beam can be described by \eqautoref{eq:bending_shear} in which V is the internal shear force, Q the first Moment of area from the neutral axis and t the thickness of the skin. 
+
+\begin{equation}
+    \tau = \frac{V Q}{I t}
+    \label{eq:bending_shear}
+\end{equation}
+
+
+\subsection{Method}
+\subsubsection{Centroid}
+Firstly, the centroid along the x-axis is calculated as a result of the geometrical parameters of the aileron structure. The x- and y-centroid are equal to zero, as the structure is symmetric around these axes.
+
+\subsubsection{Structural idealisation}
+%Maybe include a sketch of the idealisation if we have the time
+Structural idealisation is realised by applying boom idealisation. This is an assumption that simplifies the structure in such a way that the stringers and spar flanges are considered concentrations of area, called booms. They are the sole carriers of normal stresses. The stress acting over these booms is constant.
+Additionally, the skin carries the entire shear flow, which is constant in between a pair of booms.
+This idealisation is used to calculate the moment of Inertia and also when calculating the shear flow due to shear loads.
+
+\subsubsection{Moment of Inertia}
+The moment of Inertia's around all axes are calculated. This is done by taking the Steiner term for each boom. The formulas used for this are the following \eqautoref{MoI_xx}, \eqautoref{MoI_yy} and \eqautoref{MoI_zz}:
+\begin{equation}
+\label{MoI_xx}
+    I_{x x}=\sum_{i=1}^{n} y_{i}^{2} B_{x_{i}}
+\end{equation}
+\begin{equation}
+\label{MoI_yy}
+    I_{y y}=\sum_{i=1}^{n} z_{i}^{2} B_{y_{i}}
+\end{equation}
+\begin{equation}
+\label{MoI_zz}
+    I_{z z}=\sum_{i=1}^{n} y_{i}^{2} B_{z_{i}}
+\end{equation}
+
+\subsubsection{Load cases}
+
+There are three load cases considered for the concerning load scenario. These include all the loads acting on the aileron.
+Firstly there is the aileron deformation due to the wing-flex of the main wing. Secondly, the aerodynamic load is considered, which is distributed over the aileron surface. Finally there is the discrete load $P$ acting on actuator $II$. All of these loads introduce reaction forces in hinges 1, 2 and 3. A more elaborate description and analysis is given in \autoref{subsec:load_decomposition}.
+
+\subsubsection{Shear}
+Shear flow experienced by the structure is caused by shear load and torsion. In this numerical model both shear types are calculated. Consequently the total shear flow is determined by adding these.
+
+\subsubsection{Normal stress}
+
+
+
+
+
+
+\subsection{Flow chart}

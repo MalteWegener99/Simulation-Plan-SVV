@@ -1,0 +1,47 @@
+\section{Validation}
+\label{sec:Validation}
+%maybe think about more tests/explaations of discrepancies
+\textit{Once the numerical model is verified to work, it is crucial to also validate the model. This is done by comparing results to real life measurements, or in this case a FEM, which very closely resembles reality.}
+
+\subsection{The Validation Model} 
+The validation model that is given is a FEM. This model accounts for three load cases: the bending of the aileron without loads applied to it, the bending of the aileron with loads applied, and the unbent aileron with the loads applied. Out of the three, the second load case is of the highest importance, since the numerical model accounts for the case of bending with applied loads.
+
+\subsection{Comparison of Numerical Model and Validation Model}
+The results that can be retrieved from the validation model are the following: Von Mises stress, S12, nodal displacement and reaction forces, evaluated using a significantly high number of predefined points in the aileron, in the order of 10000 \cite{Assignment_description}, \cite{SVV_Validation_Data_2020}. These results therefore will be compared with the numerical model. For this, the numerical model's parameters will have to be adjusted. The physical configuration of the aileron has to be changed to that of the aileron implemented on Boeing 737, and the aerodynamic load has to be changed to the constant distributed load as specified in the reader.\\
+
+From the data given in the validation model, the Von Mises stress values can be used in order to calculate the magnitude and position of the maximum stress in the aileron. Furthermore, from the nodal displacement may be used in the comparison and validation of the twist of the aileron, as well as the deflection of the hinge line, as computed using the numerical model. Thus, validation tests may be created for the three main outputs of the numerical model: 
+\begin{itemize}
+    \item \textbf{Maximum stress} $\rightarrow$ a direct comparison between the results provided by the numerical model and those in the validation model may be performed in this case. This is due to the fact that in the data given, the magnitude of the minimum as well as the maximum stress in the aileron is provided, together with the node number and position where these occur. 
+    
+    \item \textbf{Deflection of the hinge line} $\rightarrow$ using the fact that the nodal positions are given in the data, and the geometry of the aileron is known, the points/nodes that lay on the hinge line of the aileron can be identified. The deflection caused by bending in the hinge line can be found by comparing the locations of the first and last node on the hinge line of the aileron, in span-wise direction. This deflection will then be compared with the one provided as an output by the numerical model.
+    
+    \item \textbf{Twist} $\rightarrow$ in order to extract information about the twist from the data given in the validation model, three cross-sections of the aileron, so data at three different positions in span-wise direction will be inspected, namely: at the root, at hinge 2 and at the tip of the aileron. The hinge line connects these three sections, and thus it represents a good choice for the rotation axis with respect to which the twist can be found. The position of the leading edge and trailing edge, as well as the rotation/orientation of the chord line of the three sections will be used to extract the values for the twist. These values may then be compared to the twist of the aileron provided by the numerical model.  
+    
+\end{itemize}
+
+\noindent The following validation tests will then be performed:
+\begin{itemize}
+    \item Compare Von Mises stress resulting from the FEM data to the Von Mises stress resulting from the numerical model. This will be done for the cases with and without bending, and with and without the applied aerodynamic load. By comparing the stresses on certain nodes a good comparison can be made.
+    \item Compare the S12 data to the shear force data in the numerical model. This will be done similarly to comparing the Von Mises stress, as described above.
+    \item Compare the nodal displacement along the hinge line for the FEM data and the numerical model data. This will be done at a set number of nodes, in order to validate our displacement data.
+    \item Compare the nodal displacement along the trailing edge too. validating this will give extra certainty on the calculations of the displacement, and with this data, the twist can be calculated too.
+\end{itemize}
+
+\subsection{Explanation of Discrepancies}
+There are a couple sources of discrepancies. Therefore, validation will be considered successful if the differences between the results of the validation model and the results of the numerical model are less than 5\%. The considered sources of discrepancies are:
+\begin{itemize}
+    \item The assumptions made in the numerical model that do not resemble reality, like: idealisations in moment of inertia calculations, boom-theory and neglecting certain deflections.
+    \item The inaccuracies due to the discretisation in the numerical model.
+    \item The assumptions made in the FEM that do not resemble reality. There are 2 major assumptions in this regard: The stringers are not placed in the FEM, but are 'smeared out' over the skin, and the aerodynamic load is applied at 11 discrete nodes, instead of a continuous load.
+    \item The inaccuracies due to the discretisation in the FEM. FEM work with a lot of nodes, which reduces the inaccuracies due to the approximations made, but they still result in differences with regards to reality.
+\end{itemize}
+
+%Discrepancy: In the FEM, the aerodynamic load has been applied at 11 discrete nodes. This is different than in our system
+%Significant discrepancy: In the FEM, the stringers are 'smeared out' over the skin, instead of our system of booms
+
+
+
+%Requirements for this section:
+%Proposed validation tests good, creativity shown, very well described. 
+%Validation data is optimally used
+%Plan for assessing/addressing discrepancies is consistent with description of assumptions and their effects, and the validation data
